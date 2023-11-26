@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>List Obat | Mbulan</title>
+    <title>List Pelanggan | Mbulan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
@@ -27,7 +27,7 @@
 
 </head>
 
-<body data-topbar="dark">
+<body data-topbar="dark" data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
@@ -107,7 +107,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                        <a class="dropdown-item text-danger" href="../auth/Login.html"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                     </div>
                 </div>
                 <!-- end user -->
@@ -171,6 +171,7 @@
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="data-pelanggan.html">Data Pelanggan</a></li>
                             <li><a href="data-obat.html">Data Obat</a></li>
+                            <li><a href="data-penjualan.html">Data Penjualan</a></li>
                         </ul>
                     </li>
                     <!-- end li -->
@@ -197,7 +198,7 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">List Obat</li>
+                                    <li class="breadcrumb-item active">List Pelanggan</li>
                                 </ol>
                             </div>
 
@@ -221,7 +222,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title mt-0" id="myModalLabel">Tambah Data Obat</h5>
+                                                <h5 class="modal-title mt-0" id="myModalLabel">Tambah Data Pelanggan</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -231,14 +232,14 @@
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Nama Obat</label>
+                                                                <label class="form-label">Nama Pelanggan</label>
                                                                 <input type="text" class="form-control" id="nama_pelanggan" placeholder="Nama">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Kode Obat</label>
+                                                                <label class="form-label">Usia</label>
                                                                 <input type="number" class="form-control" id="usia" placeholder="Usia">
                                                             </div>
                                                         </div>
@@ -246,35 +247,35 @@
                                                     <!-- end row -->
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tanggal Masuk</label>
-                                                        <input type="date" class="form-control" id="tgl-masuk" placeholder="Tanggal Masuk">
+                                                        <label class="form-label">Tensi</label>
+                                                        <input type="text" class="form-control" id="tensi" placeholder="Tensi">
                                                     </div>
                                                     <!-- End Col -->
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tanggal Keluar</label>
-                                                        <input type="date" class="form-control" id="tgl_masuk" placeholder="Tanggal Keluar">
+                                                        <label class="form-label">Penyakit</label>
+                                                        <input type="text" class="form-control" id="penyakit" placeholder="Penyakit">
                                                     </div>
                                                     <!-- End Col -->
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Penyakit</label>
-                                                                <input type="text" class="form-control" id="penyakit" placeholder="Penyakit">
+                                                                <label class="form-label">Nama Obat</label>
+                                                                <input type="text" class="form-control" id="nama_obat" placeholder="Obat">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Stock</label>
-                                                                <input type="text" class="form-control" id="stock" placeholder="Stock">
+                                                                <label class="form-label">Dosis Obat</label>
+                                                                <input type="text" class="form-control" id="dosis" placeholder="Dosis">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- end row -->
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tanggal Kadaluwarsa</label>
-                                                        <input type="date" class="form-control" id="tgl_kadaluwarsa" placeholder="Kadaluwarsa">
+                                                        <label class="form-label">Tanggal Konsultasi</label>
+                                                        <input type="date" class="form-control" id="tgl_konsul" placeholder="Konsultasi">
                                                     </div>
                                                     <!-- End Col -->
                                                 </div>
@@ -298,28 +299,28 @@
                                         class="table table-centered table-check datatable dt-responsive nowrap table-striped border" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead class="table-topbar text-uppercase">
                                             <tr>
-                                                <th>Nama Obat</th>
-                                                <th>kode Obat</th>
-                                                <th>Tanggal Masuk</th>
-                                                <th>Tanggal Keluar</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Usia</th>
+                                                <th>Tensi</th>
                                                 <th>Penyakit</th>
-                                                <th>Stock</th>
-                                                <th>Tanggal Kadaluwarsa</th>
+                                                <th>Nama Obat</th>
+                                                <th>Dosis Obat</th>
+                                                <th>Tanggal Konsultasi</th>
                                                 <th style="width: 120px;"><i class="mdi mdi-cog-outline mdi-spin"></i></th>
                                             </tr>
                                         </thead>
                                         <!-- end thead -->
                                         <tbody>
                                             <tr>
-                                                <td>Uang</td>
-                                                <td>0051</td>
-                                                <td>00-00-0000</td>
-                                                <td>00-00-0000</td>
+                                                <td>Muhammad Faris Adira</td>
+                                                <td>20</td>
+                                                <td>120/80</td>
                                                 <td>Kemiskinan</td>
-                                                <td>99</td>
+                                                <td>Uang</td>
+                                                <td>10x Sehari</td>
                                                 <td>00-00-0000</td>
                                                 <td id="tooltip-container1">
-                                                    <a href="#" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                    <a href="controller/pelanggan/update.html" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                         <i class="mdi mdi-pencil font-size-18"></i>
                                                     </a>
                                                     <a href="#" class="text-danger" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
