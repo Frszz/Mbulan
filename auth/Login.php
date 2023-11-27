@@ -16,7 +16,7 @@
       <div class="login">
          <img src="assets/img/bg.jpg" alt="image" class="login__bg">
 
-         <form action="../application/Dashboard.html" class="login__form">
+         <form action="../application/Dashboard.php" class="login__form">
             <h1 class="login__title">Mbulan</h1>
 
             <div class="login__inputs">
@@ -37,7 +37,7 @@
                   <label for="user-check" class="login__check-label">Ingat Saya</label>
                </div>
 
-               <a href="Reset-pw.html" class="login__forgot">Lupa Password?</a>
+               <a href="Reset-pw.php" class="login__forgot">Lupa Password?</a>
             </div>
 
             <button type="submit" class="login__button">Masuk</button>

@@ -16,7 +16,7 @@
       <div class="login">
          <img src="assets/img/bg.jpg" alt="image" class="login__bg">
 
-         <form action="Login.html" class="login__form">
+         <form action="Login.php" class="login__form">
             <h1 class="login__title">Mbulan</h1>
 
             <div class="login__inputs">
@@ -39,7 +39,7 @@
             <button type="submit" class="login__button">Reset</button>
 
             <div class="login__register">
-               Kembali Ke Halaman Masuk? <a href="Login.html">Masuk</a>
+               Kembali Ke Halaman <a href="Login.php">Masuk?</a>
             </div>
 
          </form>

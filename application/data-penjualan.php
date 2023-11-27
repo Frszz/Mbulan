@@ -1,3 +1,7 @@
+<?php
+    // Koneksi Database
+    require_once "../config/config.php";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -42,7 +46,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="dashboard.php" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm-dark.png" alt="logo-sm-dark" height="22">
                                 </span>
@@ -51,7 +55,7 @@
                                 </span>
                             </a>
         
-                            <a href="index.html" class="logo logo-light">
+                            <a href="dashboard.php" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm-light.png" alt="logo-sm-light" height="22">
                                 </span>
@@ -109,7 +113,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="../auth/Login.html"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" href="../auth/Login.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                             </div>
                         </div>
                         <!-- end user -->
@@ -138,28 +142,28 @@
                             <li class="menu-title">Menu</li>
         
                             <li>
-                                <a href="Dashboard.html" class="waves-effect">
+                                <a href="Dashboard.php" class="waves-effect">
                                     <i class="ri-dashboard-line"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
                             <!-- end li -->
                             <li>
-                                <a href="pelanggan.html" class=" waves-effect">
+                                <a href="pelanggan.php" class=" waves-effect">
                                     <i class="ri-group-line"></i>
                                     <span>List Pelanggan<span>
                                 </a>
                             </li>
                             <!-- end li -->
                             <li>
-                                <a href="obat.html" class=" waves-effect">
+                                <a href="obat.php" class=" waves-effect">
                                     <i class="ri-medicine-bottle-line"></i>
                                     <span>List Obat<span>
                                 </a>
                             </li>
                             <!-- end li -->
                             <li>
-                                <a href="maps.html" class=" waves-effect">
+                                <a href="maps.php" class=" waves-effect">
                                     <i class="ri-map-pin-line"></i>
                                     <span>Maps</span>
                                 </a>
@@ -171,9 +175,9 @@
                                     <span>Master</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="data-pelanggan.html">Data Pelanggan</a></li>
-                                    <li><a href="data-obat.html">Data Obat</a></li>
-                                    <li><a href="data-penjualan.html">Data Penjualan</a></li>
+                                    <li><a href="data-pelanggan.php">Data Pelanggan</a></li>
+                                    <li><a href="data-obat.php">Data Obat</a></li>
+                                    <li><a href="data-penjualan.php">Data Penjualan</a></li>
                                 </ul>
                             </li>
                             <!-- end li -->
@@ -199,7 +203,7 @@
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
                                             <li class="breadcrumb-item active">Data Penjualan</li>
                                         </ol>
                                     </div>
@@ -229,14 +233,20 @@
                                             </thead>
         
                                             <tbody>
+                                                <?php
+                                                    $data_penjualan = query('SELECT * FROM tbl_pelanggan');
+
+                                                    foreach($data_penjualan as $penjualan){
+                                                ?>
                                             <tr>
-                                                <td>Muhammad Faris</td>
-                                                <td>20</td>
-                                                <td>Kemiskinan</td>
-                                                <td>Uang</td>
-                                                <td>3x 100</td>
-                                                <td>00-00-0000</td>
+                                                <td><?= $penjualan['nama_pelanggan']?></td>
+                                                <td><?= $penjualan['usia_pelanggan']?></td>
+                                                <td><?= $penjualan['penyakit_pelanggan']?></td>
+                                                <td><?= $penjualan['obat_pelanggan']?></td>
+                                                <td><?= $penjualan['dosis_obat']?></td>
+                                                <td><?= $penjualan['tgl_konsultasi']?></td>
                                             </tr>
+                                            <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -329,7 +339,7 @@
         <script src="assets/libs/jszip/jszip.min.js"></script>
         <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
         <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
-        <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="assets/libs/datatables.net-buttons/js/buttons.php5.min.js"></script>
         <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
         <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 

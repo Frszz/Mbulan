@@ -1,3 +1,7 @@
+<?php
+    // Koneksi Database
+    require_once "../config/config.php";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -40,7 +44,7 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="dashboard.php" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="assets/images/logo-sm-dark.png" alt="logo-sm-dark" height="22">
                         </span>
@@ -49,7 +53,7 @@
                         </span>
                     </a>
 
-                    <a href="index.html" class="logo logo-light">
+                    <a href="dashboard.php" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="assets/images/logo-sm-light.png" alt="logo-sm-light" height="22">
                         </span>
@@ -107,7 +111,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="../auth/Login.html"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                        <a class="dropdown-item text-danger" href="../auth/Login.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                     </div>
                 </div>
                 <!-- end user -->
@@ -136,28 +140,28 @@
                     <li class="menu-title">Menu</li>
 
                     <li>
-                        <a href="Dashboard.html" class="waves-effect">
+                        <a href="Dashboard.php" class="waves-effect">
                             <i class="ri-dashboard-line"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <!-- end li -->
                     <li>
-                        <a href="pelanggan.html" class=" waves-effect">
+                        <a href="pelanggan.php" class=" waves-effect">
                             <i class="ri-group-line"></i>
                             <span>List Pelanggan<span>
                         </a>
                     </li>
                     <!-- end li -->
                     <li>
-                        <a href="obat.html" class=" waves-effect">
+                        <a href="obat.php" class=" waves-effect">
                             <i class="ri-medicine-bottle-line"></i>
                             <span>List Obat<span>
                         </a>
                     </li>
                     <!-- end li -->
                     <li>
-                        <a href="maps.html" class=" waves-effect">
+                        <a href="maps.php" class=" waves-effect">
                             <i class="ri-map-pin-line"></i>
                             <span>Maps</span>
                         </a>
@@ -169,9 +173,9 @@
                             <span>Master</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="data-pelanggan.html">Data Pelanggan</a></li>
-                            <li><a href="data-obat.html">Data Obat</a></li>
-                            <li><a href="data-penjualan.html">Data Penjualan</a></li>
+                            <li><a href="data-pelanggan.php">Data Pelanggan</a></li>
+                            <li><a href="data-obat.php">Data Obat</a></li>
+                            <li><a href="data-penjualan.php">Data Penjualan</a></li>
                         </ul>
                     </li>
                     <!-- end li -->
@@ -197,7 +201,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
                                     <li class="breadcrumb-item active">List Pelanggan</li>
                                 </ol>
                             </div>
@@ -228,65 +232,91 @@
                                             </div>
                                             <!-- end model-header -->
 
+                                            <?php
+                                                if( isset($_POST['submit']) ){    
+
+                                                    if(insert_pelanggan($_POST) > 0){
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Berhasil Ditambah');
+                                                            document.location.href = 'pelanggan.php';
+                                                        </script>
+                                                        ";
+                                                    } else {
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Gagal Ditambah');
+                                                            document.location.href = 'pelanggan.php';
+                                                        </script>
+                                                        ";
+                                                    }
+
+                                                }
+
+                                            ?>
+                                            <form action="" method="POST">
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Nama Pelanggan</label>
-                                                                <input type="text" class="form-control" id="nama_pelanggan" placeholder="Nama">
+                                                                <label for="nama_pelanggan" class="form-label">Nama Pelanggan</label>
+                                                                <input type="text" name="nama_pelanggan" class="form-control" id="nama_pelanggan" placeholder="Nama" required>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Usia</label>
-                                                                <input type="number" class="form-control" id="usia" placeholder="Usia">
+                                                                <label for="usia_pelanggan" class="form-label">Usia</label>
+                                                                <input type="number" name="usia_pelanggan" class="form-control" id="usia_pelanggan" placeholder="Usia" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- end row -->
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tensi</label>
-                                                        <input type="text" class="form-control" id="tensi" placeholder="Tensi">
+                                                        <label for="tensi_pelanggan" class="form-label">Tensi</label>
+                                                        <input type="text" name="tensi_pelanggan" class="form-control" id="tensi_pelanggan" placeholder="Tensi" required>
                                                     </div>
                                                     <!-- End Col -->
                                                     <div class="mb-3">
-                                                        <label class="form-label">Penyakit</label>
-                                                        <input type="text" class="form-control" id="penyakit" placeholder="Penyakit">
+                                                        <label for="penyakit_pelanggan" class="form-label">Penyakit</label>
+                                                        <input type="text" name="penyakit_pelanggan" class="form-control" id="penyakit_pelanggan" placeholder="Penyakit" required>
                                                     </div>
                                                     <!-- End Col -->
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Nama Obat</label>
-                                                                <input type="text" class="form-control" id="nama_obat" placeholder="Obat">
+                                                                <label for="obat_pelanggan" class="form-label">Nama Obat</label>
+                                                                <input type="text" name="obat_pelanggan" class="form-control" id="obat_pelanggan" placeholder="Obat" required>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Dosis Obat</label>
-                                                                <input type="text" class="form-control" id="dosis" placeholder="Dosis">
+                                                                <label for="dosis_obat" class="form-label">Dosis Obat</label>
+                                                                <input type="text" name="dosis_obat" class="form-control" id="dosis_obat" placeholder="Dosis" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- end row -->
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tanggal Konsultasi</label>
-                                                        <input type="date" class="form-control" id="tgl_konsul" placeholder="Konsultasi">
+                                                        <label for="tgl_konsultasi" class="form-label">Tanggal Konsultasi</label>
+                                                        <input type="date" name="tgl_konsultasi" class="form-control" id="tgl_konsultasi" placeholder="Konsultasi" required>
                                                     </div>
                                                     <!-- End Col -->
                                                 </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">
+                                                        Batal
+                                                    </button>
+                                                    <button type="submit" name="submit" class="btn btn-success waves-effect waves-light">
+                                                        Tambah
+                                                    </button>
+                                                </div>
+                                            </form>
                                                 <!-- end modal-body -->
                                             
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger waves-effect"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="button"
-                                                    class="btn btn-success waves-effect waves-light">Tambah</button>
-                                            </div>
                                         </div>
                                         <!-- end modal-content -->
                                     </div>
@@ -311,23 +341,29 @@
                                         </thead>
                                         <!-- end thead -->
                                         <tbody>
+                                                <?php
+                                                    $data_pelanggan = query('SELECT * FROM tbl_pelanggan');
+
+                                                    foreach($data_pelanggan as $pelanggan) {
+                                                ?>
                                             <tr>
-                                                <td>Muhammad Faris Adira</td>
-                                                <td>20</td>
-                                                <td>120/80</td>
-                                                <td>Kemiskinan</td>
-                                                <td>Uang</td>
-                                                <td>10x Sehari</td>
-                                                <td>00-00-0000</td>
+                                                <td><?= $pelanggan['nama_pelanggan']?></td>
+                                                <td><?= $pelanggan['usia_pelanggan']?></td>
+                                                <td><?= $pelanggan['tensi_pelanggan']?></td>
+                                                <td><?= $pelanggan['penyakit_pelanggan']?></td>
+                                                <td><?= $pelanggan['obat_pelanggan']?></td>
+                                                <td><?= $pelanggan['dosis_obat']?></td>
+                                                <td><?= $pelanggan['tgl_konsultasi']?></td>
                                                 <td id="tooltip-container1">
-                                                    <a href="controller/pelanggan/update.html" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                    <a href="controller/pelanggan/update.php" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                         <i class="mdi mdi-pencil font-size-18"></i>
                                                     </a>
-                                                    <a href="#" class="text-danger" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                    <a href="controller/pelanggan/delete.php?id_pelanggan=<?= $pelanggan['id_pelanggan']?>" onclick="return confirm('Hapus Data?');" class="text-danger" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                         <i class="mdi mdi-trash-can font-size-18"></i>
                                                     </a>
                                                 </td>
                                             </tr>
+                                            <?php } ?>
                                             <!-- end tr -->
                                         </tbody>
                                         <!-- end tbody -->

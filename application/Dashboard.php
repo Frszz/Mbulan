@@ -1,3 +1,7 @@
+<?php
+    // Koneksi Database
+    require_once "../config/config.php";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -37,7 +41,7 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
+                        <a href="dashboard.php" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="assets/images/logo-sm-dark.png" alt="logo-sm-dark" height="22">
                             </span>
@@ -46,7 +50,7 @@
                             </span>
                         </a>
 
-                        <a href="index.html" class="logo logo-light">
+                        <a href="dashboard.php" class="logo logo-light">
                             <span class="logo-sm">
                                 <img src="assets/images/logo-sm-light.png" alt="logo-sm-light" height="22">
                             </span>
@@ -104,7 +108,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="../auth/Login.html"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                            <a class="dropdown-item text-danger" href="../auth/Login.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                         </div>
                     </div>
                     <!-- end user -->
@@ -133,28 +137,28 @@
                         <li class="menu-title">Menu</li>
 
                         <li>
-                            <a href="Dashboard.html" class="waves-effect">
+                            <a href="Dashboard.php" class="waves-effect">
                                 <i class="ri-dashboard-line"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <!-- end li -->
                         <li>
-                            <a href="pelanggan.html" class=" waves-effect">
+                            <a href="pelanggan.php" class=" waves-effect">
                                 <i class="ri-group-line"></i>
                                 <span>List Pelanggan<span>
                             </a>
                         </li>
                         <!-- end li -->
                         <li>
-                            <a href="obat.html" class=" waves-effect">
+                            <a href="obat.php" class=" waves-effect">
                                 <i class="ri-medicine-bottle-line"></i>
                                 <span>List Obat<span>
                             </a>
                         </li>
                         <!-- end li -->
                         <li>
-                            <a href="maps.html" class=" waves-effect">
+                            <a href="maps.php" class=" waves-effect">
                                 <i class="ri-map-pin-line"></i>
                                 <span>Maps</span>
                             </a>
@@ -166,9 +170,9 @@
                                 <span>Master</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="data-pelanggan.html">Data Pelanggan</a></li>
-                                <li><a href="data-obat.html">Data Obat</a></li>
-                                <li><a href="data-penjualan.html">Data Penjualan</a></li>
+                                <li><a href="data-pelanggan.php">Data Pelanggan</a></li>
+                                <li><a href="data-obat.php">Data Obat</a></li>
+                                <li><a href="data-penjualan.php">Data Penjualan</a></li>
                             </ul>
                         </li>
                         <!-- end li -->
@@ -194,7 +198,7 @@
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="../auth/Login.html">Login</a></li>
+                                        <li class="breadcrumb-item"><a href="../auth/Login.php">Login</a></li>
                                         <li class="breadcrumb-item active">Dashboard</li>
                                     </ol>
                                     <!-- end ol -->
@@ -281,7 +285,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Detail</a>
+                                                <a href="pelanggan.php" class="dropdown-item">Detail</a>
                                             </div>
                                         </div>
                                         <!-- end dropdown -->
@@ -301,17 +305,23 @@
                                                 </thead>
                                                 <!-- end thead -->
                                                 <tbody>
+                                                    <?php
+                                                        $data_pelanggan = query('SELECT * FROM tbl_pelanggan');
+
+                                                        foreach($data_pelanggan as $pelanggan){
+                                                    ?>
                                                     <tr>
-                                                        <td>Muhammad Faris</td>
-                                                        <td>20</td>
-                                                        <td>Uang</td>
-                                                        <td>00-00-0000</td>
+                                                        <td><?= $pelanggan['nama_pelanggan']?></td>
+                                                        <td><?= $pelanggan['usia_pelanggan']?></td>
+                                                        <td><?= $pelanggan['obat_pelanggan']?></td>
+                                                        <td><?= $pelanggan['tgl_konsultasi']?></td>
                                                         <td style="width: 134px">
-                                                            <div class="btn btn-primary btn-sm"><a href="pelanggan.html" style="color: white;">View more</a> 
+                                                            <div class="btn btn-primary btn-sm"><a href="pelanggan.php" style="color: white;">View more</a> 
                                                                 <i class="mdi mdi-arrow-right ms-1"></i></div>
                                                         </td>
                                                     </tr>
                                                     <!-- end /tr -->
+                                                    <?php } ?>
                                                 <!-- end tbody -->
                                             </table>
                                             <!-- end table -->
@@ -333,8 +343,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <!-- item-->
-                                            <button type="button" class="btn btn-sm-primary"
-                                                data-bs-toggle="modal" data-bs-target="#my_Modal"> 
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tambah_aktv"> 
                                                 Tambah
                                             </button>
                                         </div>
@@ -344,6 +353,13 @@
 
                                     <div class="pe-lg-3" data-simplebar style="max-height: 350px;">
                                         <ul class="list-unstyled activity-wid">
+
+                                            <?php
+                                                $data_aktivitas = query('SELECT * FROM tbl_aktv');
+
+                                                foreach($data_aktivitas as $aktivitas){
+                                            ?>
+
                                             <li class="activity-list border-left">
                                                 <div class="activity-icon avatar-xs">
                                                     <span class="avatar-title bg-soft-primary text-primary rounded-circle">
@@ -353,86 +369,141 @@
                                                 <div>
                                                     <div class="d-flex">
                                                         <div class="flex-1">
-                                                            <h5 class="font-size-13">28 Apr, 2021 </h5>
+                                                            <h5 class="font-size-13"><?= $aktivitas['tgl_aktv']?> </h5>
                                                         </div>
                                                         <div>
                                                             <small class="text-muted">
-                                                                <button type="button" class="btn btn-sm-primary"
-                                                                    data-bs-toggle="modal" data-bs-target="#my_Modal"> 
+                                                                <button type="button" class="btn btn-sm-primary" data-bs-toggle="modal" data-bs-target="#edit_aktv"> 
                                                                     <i class="ri-edit-2-fill"></i>
                                                                 </button>
                                                             </small>
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <p class="text-muted mb-0">Gudang Kirim Barang</p>
+                                                        <p class="text-muted mb-0"><?= $aktivitas['ket_aktv']?></p>
                                                     </div>
                                                 </div>
                                             </li>
                                             <!-- End li -->
-                                            <li class="activity-list border-left">
-                                                <div class="activity-icon avatar-xs">
-                                                    <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                        <i class="ri-stock-line"></i>
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <div class="d-flex">
-                                                        <div class="flex-1">
-                                                            <h5 class="font-size-13">28 Apr, 2021 </h5>
-                                                        </div>
-                                                        <div>
-                                                            <small class="text-muted">
-                                                                <button type="button" class="btn btn-sm-primary"
-                                                                    data-bs-toggle="modal" data-bs-target="#my_Modal"> 
-                                                                    <i class="ri-edit-2-fill"></i>
-                                                                </button>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="text-muted mb-0">Gudang Kirim Barang</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- End li -->
+                                            <?php } ?>
                                         </ul>
                                         <!-- end ul -->
                                     </div>
                                 </div>
                                 <!-- end body -->
-                                <div id="my_Modal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div id="tambah_aktv" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title mt-0" id="myModalLabel">Tambahkan Aktivitas</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <!-- end model-header -->
 
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label class="form-label">Tanggal Aktivitas</label>
-                                                <input type="date" class="form-control" id="tgl-aktv">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Keterangan</label>
-                                                <input type="text" class="form-control" id="Ket-aktv">
-                                            </div>
-                                        </div>
-                                        <!-- end modal-body -->
+                                        <?php
+                                                if( isset($_POST['submit']) ){    
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary waves-effect"
-                                                data-bs-dismiss="modal">Batal</button>
-                                            <button type="button" class="btn btn-danger waves-effect waves-light">
-                                                Hapus
-                                            </button>
-                                            <button type="button" class="btn btn-success waves-effect waves-light">
-                                                Simpan
-                                            </button>
+                                                    if(insert_aktv($_POST) > 0){
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Berhasil Ditambah');
+                                                            document.location.href = 'dashboard.php';
+                                                        </script>
+                                                        ";
+                                                    } else {
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Gagal Ditambah');
+                                                            document.location.href = 'dashboard.php';
+                                                        </script>
+                                                        ";
+                                                    }
+
+                                                }
+
+                                            ?>
+                                        <form action="" method="POST">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="tgl_aktv" class="form-label">Tanggal Aktivitas</label>
+                                                    <input type="date" name="tgl_aktv" class="form-control" id="tgl_aktv">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="ket_aktv" class="form-label">Keterangan</label>
+                                                    <input type="text" name="ket_aktv" class="form-control" id="ket_aktv">
+                                                </div>
+                                            </div>
+                                            <!-- end modal-body -->
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary waves-effect"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" name="submit" class="btn btn-success waves-effect waves-light">
+                                                    Tambah
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end modal-content -->
+                                </div>
+                                <!-- end modal-dialog-->
+                            </div>
+                            <!-- end model -->
+                            <div id="edit_aktv" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title mt-0" id="myModalLabel">Edit Aktivitas</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
+                                        <!-- end model-header -->
+
+                                        <?php
+                                                if( isset($_POST['submit']) ){    
+
+                                                    if(insert_aktv($_POST) > 0){
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Berhasil Ditambah');
+                                                            document.location.href = 'dashboard.php';
+                                                        </script>
+                                                        ";
+                                                    } else {
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Gagal Ditambah');
+                                                            document.location.href = 'dashboard.php';
+                                                        </script>
+                                                        ";
+                                                    }
+
+                                                }
+
+                                            ?>
+                                        <form action="" method="POST">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="tgl_aktv" class="form-label">Tanggal Aktivitas</label>
+                                                    <input type="date" name="tgl_aktv" class="form-control" id="tgl_aktv">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="ket_aktv" class="form-label">Keterangan</label>
+                                                    <input type="text" name="ket_aktv" class="form-control" id="ket_aktv">
+                                                </div>
+                                            </div>
+                                            <!-- end modal-body -->
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary waves-effect"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <a href="controller/aktivitas/delete.php?id_aktv=<?= $aktivitas['id_aktv']?>" onclick="return confirm('Hapus Data?');" type="button" class="btn btn-danger waves-effect waves-light">
+                                                    Hapus
+                                                </a>
+                                                <button type="submit" name="submit" class="btn btn-success waves-effect waves-light">
+                                                    Simpan
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                     <!-- end modal-content -->
                                 </div>

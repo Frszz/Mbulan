@@ -1,10 +1,14 @@
+<?php
+    // Koneksi Database
+    require_once "../config/config.php";
+?>
 <!doctype html>
 <html lang="en">
 
 <head>
     
     <meta charset="utf-8" />
-    <title>Data Obat | Mbulan</title>
+    <title>Data Pelanggan | Mbulan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
@@ -42,7 +46,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="dashboard.php" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm-dark.png" alt="logo-sm-dark" height="22">
                                 </span>
@@ -51,7 +55,7 @@
                                 </span>
                             </a>
         
-                            <a href="index.html" class="logo logo-light">
+                            <a href="dashboard.php" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm-light.png" alt="logo-sm-light" height="22">
                                 </span>
@@ -109,7 +113,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="../auth/Login.html"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" href="../auth/Login.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                             </div>
                         </div>
                         <!-- end user -->
@@ -138,28 +142,28 @@
                             <li class="menu-title">Menu</li>
         
                             <li>
-                                <a href="Dashboard.html" class="waves-effect">
+                                <a href="Dashboard.php" class="waves-effect">
                                     <i class="ri-dashboard-line"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
                             <!-- end li -->
                             <li>
-                                <a href="pelanggan.html" class=" waves-effect">
+                                <a href="pelanggan.php" class=" waves-effect">
                                     <i class="ri-group-line"></i>
                                     <span>List Pelanggan<span>
                                 </a>
                             </li>
                             <!-- end li -->
                             <li>
-                                <a href="obat.html" class=" waves-effect">
+                                <a href="obat.php" class=" waves-effect">
                                     <i class="ri-medicine-bottle-line"></i>
                                     <span>List Obat<span>
                                 </a>
                             </li>
                             <!-- end li -->
                             <li>
-                                <a href="maps.html" class=" waves-effect">
+                                <a href="maps.php" class=" waves-effect">
                                     <i class="ri-map-pin-line"></i>
                                     <span>Maps</span>
                                 </a>
@@ -171,9 +175,9 @@
                                     <span>Master</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="data-pelanggan.html">Data Pelanggan</a></li>
-                                    <li><a href="data-obat.html">Data Obat</a></li>
-                                    <li><a href="data-penjualan.html">Data Penjualan</a></li>
+                                    <li><a href="data-pelanggan.php">Data Pelanggan</a></li>
+                                    <li><a href="data-obat.php">Data Obat</a></li>
+                                    <li><a href="data-penjualan.php">Data Penjualan</a></li>
                                 </ul>
                             </li>
                             <!-- end li -->
@@ -195,12 +199,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Data Obat</h4>
+                                    <h4 class="mb-sm-0">Data Pelanggan</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
-                                            <li class="breadcrumb-item active">Data Obat</li>
+                                            <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
+                                            <li class="breadcrumb-item active">Data Pelanggan</li>
                                         </ol>
                                     </div>
 
@@ -214,33 +218,37 @@
                                 <div class="card">
                                     <div class="card-body">
         
-                                        <h4 class="card-title">Daftar Obat</h4>
+                                        <h4 class="card-title">Daftar Pelanggan</h4>
         
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Foto Obat</th>
-                                                <th>Nama Obat</th>
-                                                <th>kode Obat</th>
-                                                <th>Tanggal Masuk</th>
+                                                <th>Nama Pelanggan</th>
+                                                <th>Usia</th>
+                                                <th>Tensi</th>
                                                 <th>Penyakit</th>
-                                                <th>Stock</th>
-                                                <th>Tanggal Kadaluwarsa</th>
+                                                <th>Nama Obat</th>
+                                                <th>Dosis Obat</th>
+                                                <th>Tanggal Konsultasi</th>
                                             </tr>
                                             </thead>
-        
+
                                             <tbody>
+                                                <?php
+                                                    $data_pelanggan = query('SELECT * FROM tbl_pelanggan');
+
+                                                    foreach($data_pelanggan as $pelanggan){
+                                                ?>
                                             <tr>
-                                                <td><img src="assets/images/users/person.png"
-                                                    class="rounded-circle h-auto avatar-xs me-2">
-                                                </td>
-                                                <td>Uang</td>
-                                                <td>0051</td>
-                                                <td>00-00-0000</td>
-                                                <td>Kemiskinan</td>
-                                                <td>99</td>
-                                                <td>00-00-0000</td>
+                                                <td><?= $pelanggan['nama_pelanggan']?></td>
+                                                <td><?= $pelanggan['usia_pelanggan']?></td>
+                                                <td><?= $pelanggan['tensi_pelanggan']?></td>
+                                                <td><?= $pelanggan['penyakit_pelanggan']?></td>
+                                                <td><?= $pelanggan['obat_pelanggan']?></td>
+                                                <td><?= $pelanggan['dosis_obat']?></td>
+                                                <td><?= $pelanggan['tgl_konsultasi']?></td>
                                             </tr>
+                                            <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -333,7 +341,7 @@
         <script src="assets/libs/jszip/jszip.min.js"></script>
         <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
         <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
-        <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="assets/libs/datatables.net-buttons/js/buttons.php5.min.js"></script>
         <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
         <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 

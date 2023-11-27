@@ -1,3 +1,7 @@
+<?php
+    // Koneksi Database
+    require_once "../config/config.php";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -40,7 +44,7 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="dashboard.php" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="assets/images/logo-sm-dark.png" alt="logo-sm-dark" height="22">
                         </span>
@@ -49,7 +53,7 @@
                         </span>
                     </a>
 
-                    <a href="index.html" class="logo logo-light">
+                    <a href="dashboard.php" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="assets/images/logo-sm-light.png" alt="logo-sm-light" height="22">
                         </span>
@@ -107,7 +111,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="../auth/Login.html"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                        <a class="dropdown-item text-danger" href="../auth/Login.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                     </div>
                 </div>
                 <!-- end user -->
@@ -136,28 +140,28 @@
                     <li class="menu-title">Menu</li>
 
                     <li>
-                        <a href="Dashboard.html" class="waves-effect">
+                        <a href="Dashboard.php" class="waves-effect">
                             <i class="ri-dashboard-line"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <!-- end li -->
                     <li>
-                        <a href="pelanggan.html" class=" waves-effect">
+                        <a href="pelanggan.php" class=" waves-effect">
                             <i class="ri-group-line"></i>
                             <span>List Pelanggan<span>
                         </a>
                     </li>
                     <!-- end li -->
                     <li>
-                        <a href="obat.html" class=" waves-effect">
+                        <a href="obat.php" class=" waves-effect">
                             <i class="ri-medicine-bottle-line"></i>
                             <span>List Obat<span>
                         </a>
                     </li>
                     <!-- end li -->
                     <li>
-                        <a href="maps.html" class=" waves-effect">
+                        <a href="maps.php" class=" waves-effect">
                             <i class="ri-map-pin-line"></i>
                             <span>Maps</span>
                         </a>
@@ -169,9 +173,9 @@
                             <span>Master</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="data-pelanggan.html">Data Pelanggan</a></li>
-                            <li><a href="data-obat.html">Data Obat</a></li>
-                            <li><a href="data-penjualan.html">Data Penjualan</a></li>
+                            <li><a href="data-pelanggan.php">Data Pelanggan</a></li>
+                            <li><a href="data-obat.php">Data Obat</a></li>
+                            <li><a href="data-penjualan.php">Data Penjualan</a></li>
                         </ul>
                     </li>
                     <!-- end li -->
@@ -197,7 +201,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="Dashboard.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
                                     <li class="breadcrumb-item active">List Obat</li>
                                 </ol>
                             </div>
@@ -228,65 +232,92 @@
                                             </div>
                                             <!-- end model-header -->
 
+                                            <?php
+                                                if( isset($_POST['submit']) ){    
+
+                                                    if(insert_obat($_POST) > 0){
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Berhasil Ditambah');
+                                                            document.location.href = 'obat.php';
+                                                        </script>
+                                                        ";
+                                                    } else {
+                                                        echo "
+                                                        <script>
+                                                            alert('Data Gagal Ditambah');
+                                                            document.location.href = 'obat.php';
+                                                        </script>
+                                                        ";
+                                                    }
+
+                                                }
+
+                                            ?>
+                                            <form action="" method="POST">
                                                 <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="foto_obat" class="form-label">Foto Obat</label>
+                                                        <input type="file" name="foto_obat" class="form-control" id="foto_obat" placeholder="Foto Obat" required>
+                                                    </div>
+                                                    <!-- End Col -->
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Nama Obat</label>
-                                                                <input type="text" class="form-control" id="nama_pelanggan" placeholder="Nama">
+                                                                <label for="nama_pbat" class="form-label">Nama Obat</label>
+                                                                <input type="text" name="nama_obat" class="form-control" id="nama_obat" placeholder="Nama Obat" required>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Kode Obat</label>
-                                                                <input type="number" class="form-control" id="usia" placeholder="Usia">
+                                                                <label for="kode_obat" class="form-label">Kode Obat</label>
+                                                                <input type="number" name="kode_obat" class="form-control" id="kode_obat" placeholder="Kode Obat" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- end row -->
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tanggal Masuk</label>
-                                                        <input type="date" class="form-control" id="tgl-masuk" placeholder="Tanggal Masuk">
+                                                        <label for="tgl_masuk" class="form-label">Tanggal Masuk</label>
+                                                        <input type="date" name="tgl_masuk" class="form-control" id="tgl_masuk" required>
                                                     </div>
                                                     <!-- End Col -->
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Tanggal Keluar</label>
-                                                        <input type="date" class="form-control" id="tgl_masuk" placeholder="Tanggal Keluar">
-                                                    </div>
-                                                    <!-- End Col -->
+
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Penyakit</label>
-                                                                <input type="text" class="form-control" id="penyakit" placeholder="Penyakit">
-                                                            </div>
+                                                            <label for="harga_obat" class="form-label">Harga Obat</label>
+                                                            <input type="text" name="harga_obat" class="form-control" id="harga_obat" placeholder="Harga Obat" required>
+                                                        </div>
                                                         </div>
 
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label class="form-label">Stock</label>
-                                                                <input type="text" class="form-control" id="stock" placeholder="Stock">
+                                                                <label for="persediaan" class="form-label">Persediaan</label>
+                                                                <input type="text" name="persediaan" class="form-control" id="persediaan" placeholder="Persediaan" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- end row -->
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Tanggal Kadaluwarsa</label>
-                                                        <input type="date" class="form-control" id="tgl_kadaluwarsa" placeholder="Kadaluwarsa">
+                                                        <label for="tgl_kadaluwarsa" class="form-label">Tanggal Kadaluwarsa</label>
+                                                        <input type="date" name="tgl_kadaluwarsa" class="form-control" id="tgl_kadaluwarsa" required>
                                                     </div>
                                                     <!-- End Col -->
                                                 </div>
                                                 <!-- end modal-body -->
                                             
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger waves-effect"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <button type="button"
-                                                    class="btn btn-success waves-effect waves-light">Tambah</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">
+                                                        Batal
+                                                    </button>
+                                                    <button type="submit" name="submit" class="btn btn-success waves-effect waves-light">
+                                                        Tambah
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                         <!-- end modal-content -->
                                     </div>
@@ -302,34 +333,39 @@
                                                 <th>Foto Obat</th>
                                                 <th>Nama Obat</th>
                                                 <th>kode Obat</th>
+                                                <th>Harga Obat</th>
                                                 <th>Tanggal Masuk</th>
-                                                <th>Penyakit</th>
-                                                <th>Stock</th>
                                                 <th>Tanggal Kadaluwarsa</th>
+                                                <th>Persediaan</th>
                                                 <th style="width: 120px;"><i class="mdi mdi-cog-outline mdi-spin"></i></th>
                                             </tr>
                                         </thead>
                                         <!-- end thead -->
                                         <tbody>
+                                                <?php
+                                                    $data_obat = query('SELECT * FROM tbl_obat');
+
+                                                    foreach($data_obat as $obat){
+                                                ?>
                                             <tr>
-                                                <td><img src="assets/images/users/person.png"
-                                                    class="rounded-circle h-auto avatar-xs me-2">
+                                                <td>
+                                                    <img class="h-auto avatar-xs me-2" style="width:100px;" src="assets/images/obat/<?= $obat['foto_obat']; ?>" alt="Foto">
                                                 </td>
-                                                <td>Uang</td>
-                                                <td>0051</td>
-                                                <td>00-00-0000</td>
-                                                <td>Kemiskinan</td>
-                                                <td>99</td>
-                                                <td>00-00-0000</td>
+                                                <td><?= $obat['nama_obat']; ?></td>
+                                                <td><?= $obat['kode_obat']; ?></td>
+                                                <td><?= $obat['harga_obat']; ?></td>
+                                                <td><?= $obat['tgl_masuk']; ?></td>
+                                                <td><?= $obat['tgl_kadaluwarsa']; ?></td>
+                                                <td><?= $obat['persediaan']; ?></td>
                                                 <td id="tooltip-container1">
-                                                    <a href="controller/obat/update.html" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                    <a href="controller/obat/update.php" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                         <i class="mdi mdi-pencil font-size-18"></i>
                                                     </a>
-                                                    <a href="#" class="text-danger" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                    <a href="controller/obat/delete.php?id_obat=<?= $obat['id_obat']?>" onclick="return confirm('Hapus Data?');" class="text-danger" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                         <i class="mdi mdi-trash-can font-size-18"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
+                                            <?php } ?>
                                             <!-- end tr -->
                                         </tbody>
                                         <!-- end tbody -->
