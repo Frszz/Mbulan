@@ -355,7 +355,7 @@
                                                 <td><?= $pelanggan['dosis_obat']?></td>
                                                 <td><?= $pelanggan['tgl_konsultasi']?></td>
                                                 <td id="tooltip-container1">
-                                                    <a href="controller/pelanggan/update.php" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                    <a href="controller/pelanggan/update.php?id_pelanggan=<?= $pelanggan['id_pelanggan']?>" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                         <i class="mdi mdi-pencil font-size-18"></i>
                                                     </a>
                                                     <a href="controller/pelanggan/delete.php?id_pelanggan=<?= $pelanggan['id_pelanggan']?>" onclick="return confirm('Hapus Data?');" class="text-danger" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">

@@ -358,7 +358,7 @@
                                                 <td><?= $obat['tgl_kadaluwarsa']; ?></td>
                                                 <td><?= $obat['persediaan']; ?></td>
                                                 <td id="tooltip-container1">
-                                                    <a href="controller/obat/update.php" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                    <a href="controller/obat/update.php?id_obat=<?= $obat['id_obat']?>" class="me-3 text-primary" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                         <i class="mdi mdi-pencil font-size-18"></i>
                                                     </a>
                                                     <a href="controller/obat/delete.php?id_obat=<?= $obat['id_obat']?>" onclick="return confirm('Hapus Data?');" class="text-danger" data-bs-container="#tooltip-container1" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">

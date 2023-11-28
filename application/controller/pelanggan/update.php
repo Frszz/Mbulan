@@ -210,13 +210,42 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <form action="" method="">
+
+                                <?php
+
+                                    $id_pelanggan = $_GET['id_pelanggan'];
+
+                                    $pelanggan = query("SELECT * FROM tbl_pelanggan WHERE id_pelanggan = $id_pelanggan")[0];
+
+                                    if( isset($_POST['simpan']) ){    
+
+                                        if(update_pelanggan($_POST) > 0){
+                                            echo "
+                                            <script>
+                                                alert('Data Berhasil Diubah');
+                                                document.location.href = '../../pelanggan.php';
+                                            </script>
+                                            ";
+                                        } else {
+                                            echo "
+                                            <script>
+                                                alert('Data Gagal Diubah');
+                                                document.location.href = '../../pelanggan.php';
+                                            </script>
+                                            ";
+                                        }
+
+                                    }
+
+                                ?>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id_pelanggan" value="<?= $pelanggan['id_pelanggan']?>">
                                     <div class="card-body">
 
                                         <div class="row mb-3">
                                             <label for="nama_pelanggan" class="col-sm-2 col-form-label">Nama Pelanggan</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="nama_pelanggan">
+                                                <input class="form-control" name="nama_pelanggan" type="text" id="nama_pelanggan" value="<?= $pelanggan['nama_pelanggan']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
@@ -224,7 +253,7 @@
                                         <div class="row mb-3">
                                             <label for="usia_pelanggan" class="col-sm-2 col-form-label">Usia</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="number" id="usia_pelanggan">
+                                                <input class="form-control" name="usia_pelanggan" type="number" id="usia_pelanggan" value="<?= $pelanggan['usia_pelanggan']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
@@ -232,7 +261,7 @@
                                         <div class="row mb-3">
                                             <label for="tensi_pelanggan" class="col-sm-2 col-form-label">Tensi</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="tensi_pelanggan">
+                                                <input class="form-control" name="tensi_pelanggan" type="text" id="tensi_pelanggan" value="<?= $pelanggan['tensi_pelanggan']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
@@ -240,15 +269,15 @@
                                         <div class="row mb-3">
                                             <label for="penyakit_pelanggan" class="col-sm-2 col-form-label">Penyakit</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="penyakit_pelanggan">
+                                                <input class="form-control" name="penyakit_pelanggan" type="text" id="penyakit_pelanggan" value="<?= $pelanggan['penyakit_pelanggan']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
 
                                         <div class="row mb-3">
-                                            <label for="nama_obat" class="col-sm-2 col-form-label">Nama Obat</label>
+                                            <label for="obat_pelanggan" class="col-sm-2 col-form-label">Nama Obat</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="nama_obat">
+                                                <input class="form-control" name="obat_pelanggan" type="text" id="obat_pelanggan" value="<?= $pelanggan['obat_pelanggan']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
@@ -256,7 +285,7 @@
                                         <div class="row mb-3">
                                             <label for="dosis_obat" class="col-sm-2 col-form-label">Dosis Obat</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" id="dosis_obat">
+                                                <input class="form-control" name="dosis_obat" type="text" id="dosis_obat" value="<?= $pelanggan['dosis_obat']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
@@ -264,7 +293,7 @@
                                         <div class="row mb-3">
                                             <label for="tgl_konsultasi" class="col-sm-2 col-form-label">Tanggal Konsultasi</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="date" id="tgl_konsultasi">
+                                                <input class="form-control" name="tgl_konsultasi" type="date" id="tgl_konsultasi" value="<?= $pelanggan['tgl_konsultasi']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
@@ -277,6 +306,7 @@
                                         </div>
                                     </div>
                                 </form>
+
                                 <!-- end cardbody -->
                             </div>
                             <!-- end card -->

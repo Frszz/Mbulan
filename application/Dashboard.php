@@ -337,11 +337,10 @@
                             <div class="card">
                                 <div class="card-body bg-transparent">
                                     <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
+                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="mdi mdi-dots-vertical text-muted"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
+                                        <div class="dropdown-menu dropdown-menu-end" id="dropdwon">
                                             <!-- item-->
                                             <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tambah_aktv"> 
                                                 Tambah
@@ -357,7 +356,7 @@
                                             <?php
                                                 $data_aktivitas = query('SELECT * FROM tbl_aktv');
 
-                                                foreach($data_aktivitas as $aktivitas){
+                                                foreach($data_aktivitas as $aktv){
                                             ?>
 
                                             <li class="activity-list border-left">
@@ -369,18 +368,21 @@
                                                 <div>
                                                     <div class="d-flex">
                                                         <div class="flex-1">
-                                                            <h5 class="font-size-13"><?= $aktivitas['tgl_aktv']?> </h5>
+                                                            <h5 class="font-size-13"><?= $aktv['tgl_aktv']?> </h5>
                                                         </div>
                                                         <div>
                                                             <small class="text-muted">
-                                                                <button type="button" class="btn btn-sm-primary" data-bs-toggle="modal" data-bs-target="#edit_aktv"> 
+                                                                <a href="controller/aktivitas/update.php?id_aktv=<?= $aktv['id_aktv']?>" class="btn btn-sm-primary"> 
                                                                     <i class="ri-edit-2-fill"></i>
-                                                                </button>
+                                                                </a>
+                                                                <a href="controller/aktivitas/delete.php?id_aktv=<?= $aktv['id_aktv']?>" class="btn btn-sm-primary" onclick="return confirm('Hapus Aktivitas?');"> 
+                                                                    <i class="ri-eraser-fill"></i>
+                                                                </a>
                                                             </small>
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <p class="text-muted mb-0"><?= $aktivitas['ket_aktv']?></p>
+                                                        <p class="text-muted mb-0"><?= $aktv['ket_aktv']?></p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -391,6 +393,7 @@
                                     </div>
                                 </div>
                                 <!-- end body -->
+
                             <div id="tambah_aktv" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -440,67 +443,6 @@
                                                     data-bs-dismiss="modal">Batal</button>
                                                 <button type="submit" name="submit" class="btn btn-success waves-effect waves-light">
                                                     Tambah
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- end modal-content -->
-                                </div>
-                                <!-- end modal-dialog-->
-                            </div>
-                            <!-- end model -->
-                            <div id="edit_aktv" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title mt-0" id="myModalLabel">Edit Aktivitas</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <!-- end model-header -->
-
-                                        <?php
-                                                if( isset($_POST['submit']) ){    
-
-                                                    if(insert_aktv($_POST) > 0){
-                                                        echo "
-                                                        <script>
-                                                            alert('Data Berhasil Ditambah');
-                                                            document.location.href = 'dashboard.php';
-                                                        </script>
-                                                        ";
-                                                    } else {
-                                                        echo "
-                                                        <script>
-                                                            alert('Data Gagal Ditambah');
-                                                            document.location.href = 'dashboard.php';
-                                                        </script>
-                                                        ";
-                                                    }
-
-                                                }
-
-                                            ?>
-                                        <form action="" method="POST">
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <label for="tgl_aktv" class="form-label">Tanggal Aktivitas</label>
-                                                    <input type="date" name="tgl_aktv" class="form-control" id="tgl_aktv">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="ket_aktv" class="form-label">Keterangan</label>
-                                                    <input type="text" name="ket_aktv" class="form-control" id="ket_aktv">
-                                                </div>
-                                            </div>
-                                            <!-- end modal-body -->
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary waves-effect"
-                                                    data-bs-dismiss="modal">Batal</button>
-                                                <a href="controller/aktivitas/delete.php?id_aktv=<?= $aktivitas['id_aktv']?>" onclick="return confirm('Hapus Data?');" type="button" class="btn btn-danger waves-effect waves-light">
-                                                    Hapus
-                                                </a>
-                                                <button type="submit" name="submit" class="btn btn-success waves-effect waves-light">
-                                                    Simpan
                                                 </button>
                                             </div>
                                         </form>

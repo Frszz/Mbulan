@@ -8,7 +8,7 @@
   <head>
 
       <meta charset="utf-8" />
-      <title> List Obat | Mbulan</title>
+      <title> Aktivitas | Mbulan</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
       <meta content="Themesdesign" name="author" />
@@ -125,59 +125,59 @@
       <!--  Left Sidebar Start  -->
         <div class="vertical-menu">
 
-        <div data-simplebar class="h-100">
+            <div data-simplebar class="h-100">
 
-            <!--- Sidemenu -->
-            <div id="sidebar-menu">
-                <!-- Left Menu Start -->
-                <ul class="metismenu list-unstyled" id="side-menu">
-                    <li class="menu-title">Menu</li>
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title">Menu</li>
 
-                    <li>
-                        <a href="../../Dashboard.php" class="waves-effect">
-                            <i class="ri-dashboard-line"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <!-- end li -->
-                    <li>
-                        <a href="../../pelanggan.php" class=" waves-effect">
-                            <i class="ri-group-line"></i>
-                            <span>List Pelanggan<span>
-                        </a>
-                    </li>
-                    <!-- end li -->
-                    <li>
-                        <a href="../../obat.php" class=" waves-effect">
-                            <i class="ri-medicine-bottle-line"></i>
-                            <span>List Obat<span>
-                        </a>
-                    </li>
-                    <!-- end li -->
-                    <li>
-                        <a href="../../maps.php" class=" waves-effect">
-                            <i class="ri-map-pin-line"></i>
-                            <span>Maps</span>
-                        </a>
-                    </li>
-                    <!-- end li -->
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="ri-apps-2-line"></i>
-                            <span>Master</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="../../data-pelanggan.php">Data Pelanggan</a></li>
-                            <li><a href="../../data-obat.php">Data Obat</a></li>
-                            <li><a href="../../data-penjualan.php">Data Penjualan</a></li>
-                        </ul>
-                    </li>
-                    <!-- end li -->
-                </ul>
-                <!-- end ul -->
+                        <li>
+                            <a href="../../Dashboard.php" class="waves-effect">
+                                <i class="ri-dashboard-line"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <!-- end li -->
+                        <li>
+                            <a href="../../pelanggan.php" class=" waves-effect">
+                                <i class="ri-group-line"></i>
+                                <span>List Pelanggan<span>
+                            </a>
+                        </li>
+                        <!-- end li -->
+                        <li>
+                            <a href="../../obat.php" class=" waves-effect">
+                                <i class="ri-medicine-bottle-line"></i>
+                                <span>List Obat<span>
+                            </a>
+                        </li>
+                        <!-- end li -->
+                        <li>
+                            <a href="../../maps.php" class=" waves-effect">
+                                <i class="ri-map-pin-line"></i>
+                                <span>Maps</span>
+                            </a>
+                        </li>
+                        <!-- end li -->
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-apps-2-line"></i>
+                                <span>Master</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../../data-pelanggan.php">Data Pelanggan</a></li>
+                                <li><a href="../../data-obat.php">Data Obat</a></li>
+                                <li><a href="../../data-penjualan.php">Data Penjualan</a></li>
+                            </ul>
+                        </li>
+                        <!-- end li -->
+                    </ul>
+                    <!-- end ul -->
+                </div>
+                <!-- Sidebar -->
             </div>
-            <!-- Sidebar -->
-        </div>
         </div>
       <!-- Left Sidebar End -->
 
@@ -192,13 +192,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">Edit Data Obat</h4>
+                                <h4 class="mb-sm-0">Edit Data Aktivitas</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="../../Dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="../../obat.php">List Obat</a></li>
-                                        <li class="breadcrumb-item active">Edit Data</li>
+                                        <li class="breadcrumb-item active">Edit Data </li>
                                     </ol>
                                 </div>
 
@@ -212,89 +211,48 @@
                             <div class="card">
 
                                 <?php
+                                    $id_aktv= $_GET['id_aktv'];
 
-                                    $id_obat = $_GET['id_obat'];
+                                    $aktv = query("SELECT * FROM tbl_aktv WHERE id_aktv = $id_aktv")[0];
 
-                                    $obat = query("SELECT * FROM tbl_obat WHERE id_obat = $id_obat")[0];
+                                        if( isset($_POST['simpan']) ){    
 
-                                    if( isset($_POST['simpan']) ){    
+                                            if(update_aktv($_POST) > 0){
+                                                echo "
+                                                <script>
+                                                    alert('Data Berhasil Diubah');
+                                                    document.location.href = '../../dashboard.php';
+                                                </script>
+                                                ";
+                                            } else {
+                                                echo "
+                                                <script>
+                                                    alert('Data Gagal Diubah');
+                                                    document.location.href = '../../dashboard.php';
+                                                </script>
+                                                ";
+                                            }
 
-                                        if(update_obat($_POST) > 0){
-                                            echo "
-                                            <script>
-                                                alert('Data Berhasil Diubah');
-                                                document.location.href = '../../obat.php';
-                                            </script>
-                                            ";
-                                        } else {
-                                            echo "
-                                            <script>
-                                                alert('Data Gagal Diubah');
-                                                document.location.href = '../../obat.php';
-                                            </script>
-                                            ";
                                         }
 
-                                    }
-
-                                    ?>
+                                ?>
 
                                 <form action="" method="POST">
-                                    <input type="hidden" name="id_obat" value="<?= $obat['id_obat']?>">
+                                    <input type="hidden" name="id_aktv" value="<?= $aktv['id_aktv']?>">
                                     <div class="card-body">
 
                                         <div class="row mb-3">
-                                            <label for="foto_obat" class="col-sm-2 col-form-label">Foto Obat </label>
+                                            <label for="tgl_aktv" class="col-sm-2 col-form-label">Tanggal Aktivitas</label>
                                             <div class="col-sm-10">
-                                                <img id="foto_obat" src="../../assets/images/obat/Aminophylline.jpeg"  width="250" height="200" alt="Foto">
+                                                <input class="form-control" name="tgl_aktv" type="date" id="tgl_aktv" value="<?= $aktv['tgl_aktv']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
 
                                         <div class="row mb-3">
-                                            <label for="nama_obat" class="col-sm-2 col-form-label">Nama Obat</label>
+                                            <label for="ket_aktv" class="col-sm-2 col-form-label">Keterangan</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" name="nama_obat" type="text" id="nama_obat" value="<?= $obat['nama_obat']?>">
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-
-                                        <div class="row mb-3">
-                                            <label for="kode_obat" class="col-sm-2 col-form-label">Kode Obat</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" name="kode_obat" type="text" id="kode_obat" value="<?= $obat['kode_obat']?>">
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-                                        
-                                        <div class="row mb-3">
-                                            <label for="harga_obat" class="col-sm-2 col-form-label">Harga Obat</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" name="harga_obat" type="text" id="harga_obat" value="<?= $obat['harga_obat']?>">
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-
-                                        <div class="row mb-3">
-                                            <label for="tgl_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" name="tgl_masuk" type="date" id="tgl_masuk" value="<?= $obat['tgl_masuk']?>">
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-
-                                        <div class="row mb-3">
-                                            <label for="persediaan" class="col-sm-2 col-form-label">Persediaaan</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" name="persediaan" type="number" id="persediaan" value="<?= $obat['persediaan']?>">
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-
-                                        <div class="row mb-3">
-                                            <label for="tgl_kadaluwarsa" class="col-sm-2 col-form-label">Tanggal Kaluwarsa</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" name="tgl_kadaluwarsa" type="date" id="tgl_kadaluwarsa" value="<?= $obat['tgl_kadaluwarsa']?>">
+                                                <input class="form-control" name="ket_aktv" type="text" id="ket_aktv" value="<?= $aktv['ket_aktv']?>">
                                             </div>
                                         </div>
                                         <!-- end row -->
@@ -302,7 +260,7 @@
                                         <div class="mb-3 row mt-5">
                                             <div class="col">
                                                 <input type="submit" class="btn btn-success" value="Simpan" name="simpan">
-                                                <a href="../../obat.php" type="button" class="btn btn-danger"> Kembali</a>
+                                                <a href="../../dashboard.php" type="button" class="btn btn-danger"> Kembali</a>
                                             </div>
                                         </div>
                                     </div>
@@ -347,42 +305,42 @@
 
   <!-- Right Sidebar -->
     <div class="right-bar">
-    <div data-simplebar class="h-100">
-        <div class="rightbar-title d-flex align-items-center px-3 py-4">
+        <div data-simplebar class="h-100">
+            <div class="rightbar-title d-flex align-items-center px-3 py-4">
 
-            <h5 class="m-0 me-2">Settings</h5>
+                <h5 class="m-0 me-2">Settings</h5>
 
-            <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                <i class="mdi mdi-close noti-icon"></i>
-            </a>
-        </div>
-
-        <!-- Settings -->
-        <hr class="mt-0" />
-        <h6 class="text-center mb-0">Choose Layouts</h6>
-
-        <div class="p-4">
-            <div class="mb-2">
-                <img src="../../assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="layout-1">
+                <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                    <i class="mdi mdi-close noti-icon"></i>
+                </a>
             </div>
 
-            <div class="form-check form-switch mb-3">
-                <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
-                <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+            <!-- Settings -->
+            <hr class="mt-0" />
+            <h6 class="text-center mb-0">Choose Layouts</h6>
+
+            <div class="p-4">
+                <div class="mb-2">
+                    <img src="../../assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="layout-1">
+                </div>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
+                    <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+                </div>
+
+                <div class="mb-2">
+                    <img src="../../assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="layout-2">
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch"
+                        data-bsStyle="../../assets/css/bootstrap-dark.min.css" data-appStyle="../../assets/css/app-dark.min.css">
+                    <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
+                </div>
+
             </div>
 
-            <div class="mb-2">
-                <img src="../../assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="layout-2">
-            </div>
-            <div class="form-check form-switch mb-3">
-                <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch"
-                    data-bsStyle="../../assets/css/bootstrap-dark.min.css" data-appStyle="../../assets/css/app-dark.min.css">
-                <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
-            </div>
-
-        </div>
-
-    </div> <!-- end slimscroll-menu-->
+        </div> <!-- end slimscroll-menu-->
     </div>
   <!-- /Right-bar -->
 
@@ -405,4 +363,4 @@
 
   </body>
 
-</html>
+</html> 
