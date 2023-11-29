@@ -1,6 +1,7 @@
 <?php
     // Koneksi Database
     require_once "../config/config.php";
+    $data_penjualan = query('SELECT * FROM tbl_pelanggan ORDER BY id_pelanggan DESC');
 ?>
 <!doctype html>
 <html lang="en">
@@ -234,8 +235,6 @@
         
                                             <tbody>
                                                 <?php
-                                                    $data_penjualan = query('SELECT * FROM tbl_pelanggan');
-
                                                     foreach($data_penjualan as $penjualan){
                                                 ?>
                                             <tr>

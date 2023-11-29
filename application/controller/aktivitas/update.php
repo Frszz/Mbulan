@@ -334,7 +334,7 @@
                 </div>
                 <div class="form-check form-switch mb-3">
                     <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch"
-                        data-bsStyle="../../assets/css/bootstrap-dark.min.css" data-appStyle="../../assets/css/app-dark.min.css">
+                        data-bsStyle="http://localhost/Mbulan/application/assets/css/bootstrap-dark.min.css" data-appStyle="http://localhost/Mbulan/application/assets/css/app-dark.min.css">
                     <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
                 </div>
 

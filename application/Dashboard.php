@@ -1,6 +1,7 @@
 <?php
     // Koneksi Database
     require_once "../config/config.php";
+    $data_pelanggan = query('SELECT * FROM tbl_pelanggan');
 ?>
 <!doctype html>
 <html lang="en">
@@ -306,8 +307,6 @@
                                                 <!-- end thead -->
                                                 <tbody>
                                                     <?php
-                                                        $data_pelanggan = query('SELECT * FROM tbl_pelanggan');
-
                                                         foreach($data_pelanggan as $pelanggan){
                                                     ?>
                                                     <tr>
@@ -354,7 +353,7 @@
                                         <ul class="list-unstyled activity-wid">
 
                                             <?php
-                                                $data_aktivitas = query('SELECT * FROM tbl_aktv');
+                                                $data_aktivitas = query('SELECT * FROM tbl_aktv ORDER BY id_aktv DESC');
 
                                                 foreach($data_aktivitas as $aktv){
                                             ?>

@@ -1,6 +1,7 @@
 <?php
     // Koneksi Database
     require_once "../config/config.php";
+    $data_obat = query('SELECT * FROM tbl_obat ORDER BY id_obat DESC');
 ?>
 <!doctype html>
 <html lang="en">
@@ -234,8 +235,6 @@
         
                                             <tbody>
                                                 <?php
-                                                    $data_obat = query('SELECT * FROM tbl_obat');
-
                                                     foreach($data_obat as $obat){
                                                 ?>
                                             <tr>

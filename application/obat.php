@@ -1,6 +1,7 @@
 <?php
     // Koneksi Database
     require_once "../config/config.php";
+    $data_obat = query('SELECT * FROM tbl_obat ORDER BY id_obat DESC');
 ?>
 <!doctype html>
 <html lang="en">
@@ -215,10 +216,23 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="">
-                                    <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#my_Modal"> <i class="mdi mdi-plus me-2"></i>
-                                        Tambah
-                                    </button>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#my_Modal"> 
+                                            <i class="mdi mdi-plus me-2"></i> Tambah
+                                        </button>
+                                    </div>
+                                    <?php
+                                        if( isset($_POST["cari"]) ) {
+                                            $data_obat = cari_obat($_POST["keyword"]);
+                                        }
+                                    ?>
+                                    <div class="col-xl-6">
+                                        <form action="" method="POST">
+                                            <input type="text" name="keyword" autofocus autocomplete="off">
+                                            <button type="submit" name="cari" class="btn btn-primary waves-effect waves-light">Search</button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <!-- sample modal content -->
                                 <div id="my_Modal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel"
@@ -254,7 +268,7 @@
                                                 }
 
                                             ?>
-                                            <form action="" method="POST">
+                                            <form action="" method="POST" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <div class="mb-3">
                                                         <label for="foto_obat" class="form-label">Foto Obat</label>
@@ -343,9 +357,7 @@
                                         <!-- end thead -->
                                         <tbody>
                                                 <?php
-                                                    $data_obat = query('SELECT * FROM tbl_obat');
-
-                                                    foreach($data_obat as $obat){
+                                                    foreach($data_obat as $obat) {
                                                 ?>
                                             <tr>
                                                 <td>

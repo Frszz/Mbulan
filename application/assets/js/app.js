@@ -16,7 +16,7 @@
       ? (n("html").removeAttr("dir"),
         n("#light-mode-switch").prop("checked", !1),
         n("#rtl-mode-switch").prop("checked", !1),
-        n("#bootstrap-style").attr("href", "http://localhost/application/Mbulan/assets/css/bootstrap-dark.min.css"),
+        n("#bootstrap-style").attr("href", "http://localhost/Mbulan/application/assets/css/bootstrap-dark.min.css"),
         n("#app-style").attr("href", "http://localhost/Mbulan/application/assets/css/app-dark.min.css"),
         sessionStorage.setItem("is_visited", "dark-mode-switch"))
       : 1 == n("#rtl-mode-switch").prop("checked") &&
