@@ -223,12 +223,23 @@
                         <div class="col-xl-8">
                             <div class="row">
                                 <div class="col-xl-4 col-md-6">
+                                    <?php
+                                        // Query untuk menghitung jumlah baris
+                                        $query = "SELECT COUNT(*) as total_rows FROM tbl_pelanggan";
+                                        $result = $con->query($query);
+
+                                        // Mendapatkan hasil
+                                        $row = $result->fetch_assoc();
+                                        $totalpelanggan = $row['total_rows'];
+
+                                    ?>
+
                                     <div class="card">
                                         <div class="card-body p-0">
                                             <div class="p-4">
                                                 <div class="d-flex">
                                                     <div class="flex-1">
-                                                        <h3 class="mb-3"><span class="counter_value">0</span> </h3>
+                                                        <h3 class="mb-3"><span><?php echo $totalpelanggan; ?></span> </h3>
                                                     </div>
                                                     <div class="">
                                                         <p class="badge bg-soft-primary text-primary fw-bold font-size-20 mb-0"> <i class="ri-group-fill"></i></p>
@@ -243,12 +254,22 @@
                                 </div>
                                 <!-- end col -->
                                 <div class="col-xl-4 col-md-6">
+                                    <?php
+                                        // Query untuk menghitung jumlah baris
+                                        $query = "SELECT COUNT(*) as total_rows FROM tbl_obat";
+                                        $result = $con->query($query);
+
+                                        // Mendapatkan hasil
+                                        $row = $result->fetch_assoc();
+                                        $totalobat = $row['total_rows'];
+
+                                    ?>
                                     <div class="card">
                                         <div class="card-body p-0">
                                             <div class="p-4">
                                                 <div class="d-flex">
                                                     <div class="flex-1">
-                                                        <h3 class="mb-3"><span class="counter_value">0</span> </h3>
+                                                        <h3 class="mb-3"><span><?php echo $totalobat; ?></span> </h3>
                                                     </div>
                                                     <div class="">
                                                         <p class="badge bg-soft-primary text-primary fw-bold font-size-20 mb-0"> <i class="ri-medicine-bottle-fill"></i></p>
@@ -263,12 +284,22 @@
                                 </div>
                                 <!-- end col -->
                                 <div class="col-xl-4 col-md-6">
+                                    <?php
+                                        // Query untuk menghitung jumlah baris
+                                        $query = "SELECT COUNT(*) as total_rows FROM tbl_pelanggan";
+                                        $result = $con->query($query);
+
+                                        // Mendapatkan hasil
+                                        $row = $result->fetch_assoc();
+                                        $totalpenjualan = $row['total_rows'];
+
+                                    ?>
                                     <div class="card">
                                         <div class="card-body p-0">
                                             <div class="p-4">
                                                 <div class="d-flex">
                                                     <div class="flex-1">
-                                                        <h3 class="mb-3"><span class="counter_value">0</span> </h3>
+                                                        <h3 class="mb-3"><?php echo $totalpenjualan; ?> </h3>
                                                     </div>
                                                     <div class="">
                                                         <p class="badge bg-soft-primary text-primary fw-bold font-size-20 mb-0"><i class="ri-file-text-fill"></i></p>
