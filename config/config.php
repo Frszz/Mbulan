@@ -1,7 +1,5 @@
 <?php
 // Koneksi Database
-    date_default_timezone_set('Asia/Jakarta');
-    session_start();
 
     $host = 'localhost';
     $user = 'root';
@@ -320,5 +318,45 @@
                 ";
                 
         return query($query);
+    }
+
+//  Fungsi Registrasi
+    function registrasi($data) {
+        global $con;
+
+        $username = strtolower( stripslashes($data["username"]) );
+        $password = mysqli_real_escape_string($con, $data["password"]);
+        $password2 = mysqli_real_escape_string($con, $data["password2"]);
+
+        $result = mysqli_query($con, "SELECT username FROM tbl_admin WHERE
+                    username = '$username'
+                    ");
+
+        if( $password !== $password2){
+            echo "<script>
+                    alert('Konfirmasi Password Tidak Sesuai')
+                </script>";
+
+            return false;
+        }
+
+        if( mysqli_fetch_assoc($result) ) {
+            echo "<script>
+                    alert('Username Sudah Terdaftar')
+                </script>";
+
+            return false;
+        }
+
+        // $password = password_hash($password, PASSWORD_DEFAULT);
+        // $password = md5($password);
+
+        mysqli_query($con, "INSERT INTO tbl_admin VALUES(
+            '', 
+            '$username',  
+            '$password'
+            )");
+
+            return mysqli_affected_rows($con);
     }
 ?>

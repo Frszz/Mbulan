@@ -1,4 +1,11 @@
 <?php
+
+    session_start();
+    if( !isset($_SESSION["login"])) {
+        header("Location: ../auth/login.php");
+        exit;
+    }
+
     // Koneksi Database
     require_once "../config/config.php";
     $data_obat = query('SELECT * FROM tbl_obat ORDER BY id_obat DESC');
@@ -112,7 +119,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="../auth/Login.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                        <a class="dropdown-item text-danger" href="../auth/logout.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                     </div>
                 </div>
                 <!-- end user -->

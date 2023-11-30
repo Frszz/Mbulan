@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2023 pada 02.01
+-- Waktu pembuatan: 30 Nov 2023 pada 04.59
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -29,16 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_admin` (
   `id_admin` int(11) NOT NULL,
-  `email_admin` varchar(50) NOT NULL,
-  `password_admin` varchar(50) NOT NULL
+  `username` varchar(255) NOT NULL,
+  `password` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tbl_admin`
 --
 
-INSERT INTO `tbl_admin` (`id_admin`, `email_admin`, `password_admin`) VALUES
-(1, 'mbulan@gmail.com', '123mbulan');
+INSERT INTO `tbl_admin` (`id_admin`, `username`, `password`) VALUES
+(11, 'admin', '123');
 
 -- --------------------------------------------------------
 
@@ -82,11 +82,12 @@ CREATE TABLE `tbl_obat` (
 --
 
 INSERT INTO `tbl_obat` (`id_obat`, `foto_obat`, `nama_obat`, `kode_obat`, `harga_obat`, `tgl_masuk`, `persediaan`, `tgl_kadaluwarsa`) VALUES
-(1, 'Chlorpheniramine.jpeg', 'CTM (Chlorpheniramine)', '1111', '-', '2023-10-12', 20, '2027-04-10'),
+(1, 'Chlorpheniramine.jpeg', 'CTM (Chlorpheniramine)', '1111', '100k', '2023-10-12', 20, '2027-04-10'),
 (2, 'Aminophylline.jpeg', 'Aminophylline Tablet', '2222', '-', '2023-10-12', 20, '2026-05-04'),
 (3, 'Amoxsan.jpeg', 'Amoxsan', '3333', '-', '2023-10-12', 20, '2026-03-10'),
 (4, 'Neomycin.jpeg', 'Neomycin', '4444', '-', '2023-10-12', 30, '2028-06-06'),
-(5, 'Lactas Calcium.jpeg', 'Lactas Calcium', '5555', '-', '2023-10-12', 200, '2027-08-11');
+(5, 'Lactas Calcium.jpeg', 'Lactas Calcium', '5555', '-', '2023-10-12', 200, '2027-08-11'),
+(13, '6567505f6625f.png', '1asdsa', '1231', '1313', '3131-12-13', 12313, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -113,8 +114,7 @@ INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `usia_pelanggan`,
 (1, 'Sokidin', 35, '120/80 mmHg', 'Pneumonia', 'CTM, \r\nEphedrine, \r\nAminophylline, ', '2mg,\r\n5mg,\r\n150mg', '2023-09-25'),
 (2, 'Sari', 2, '-', 'Febris', 'Paracetamol ', '120mg', '2023-09-13'),
 (3, 'Reza', 20, '-', 'Herpes', 'Vaseline album ad ', '50mg', '2023-09-25'),
-(4, 'adinda Setia', 43, '150/80 mmHg', 'Kanker payudara (Carcinoma mammae)\r\n', 'Tamofen tab ', '20mg', '2023-09-27'),
-(21, 'sade', 123, 'sad', '123d', 'asda', 'sad', '1231-03-12');
+(4, 'adinda Setia', 43, '150/80 mmHg', 'Kanker payudara', 'Tamofen tab ', '20mg', '2023-09-27');
 
 --
 -- Indexes for dumped tables
@@ -152,19 +152,19 @@ ALTER TABLE `tbl_pelanggan`
 -- AUTO_INCREMENT untuk tabel `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_aktv`
 --
 ALTER TABLE `tbl_aktv`
-  MODIFY `id_aktv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_aktv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_obat`
 --
 ALTER TABLE `tbl_obat`
-  MODIFY `id_obat` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_obat` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_pelanggan`
